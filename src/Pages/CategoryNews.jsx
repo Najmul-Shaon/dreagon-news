@@ -7,7 +7,7 @@ const CategoryNews = () => {
   return (
     <div>
       <h2 className="font-semibold">Dragon news home {news.length}</h2>
-      <div>
+      <div className="flex flex-col gap-6">
         {news.map((singleNews) => (
           <NewsCard key={singleNews._id} news={singleNews}></NewsCard>
         ))}

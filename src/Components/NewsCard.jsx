@@ -29,7 +29,7 @@ const NewsCard = (props = {}) => {
 
         {/* Thumbnail Image */}
         <img
-          className="w-full h-48 mt-4 object-cover rounded-md"
+          className="w-full h-96 mt-4 object-cover rounded-md"
           src={news.thumbnail_url}
           alt="News Thumbnail"
         />
