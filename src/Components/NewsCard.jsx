@@ -1,8 +1,9 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
 const NewsCard = (props = {}) => {
   const { news } = props || {};
   const { title } = news;
+  console.log(news);
   return (
     <div className="mx-auto bg-white rounded-xl shadow-md overflow-hidden">
       <div className="p-6">
@@ -37,7 +38,12 @@ const NewsCard = (props = {}) => {
         {/* Details */}
         <p className="mt-4 text-sm text-gray-500">
           {news.details.substring(0, 200)}...
-          <span className="text-orange-600 cursor-pointer"> Read More</span>
+          <Link
+            to={`/news/${news._id}`}
+            className="text-orange-600 cursor-pointer"
+          >
+            Read More
+          </Link>
         </p>
 
         {/* Footer Section */}
