@@ -1,15 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 const Register = () => {
-  const { createNewUser, setUser } = useContext(AuthContext);
+  const { createNewUser, setUser, updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [error, setError] = useState({});
 
   // console.log(setUser);
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = new FormData(e.target);
     const name = form.get("name");
+    if (name.length < 6) {
+      setError({ ...error, name: "must be more longer" });
+      return;
+    }
     const email = form.get("email");
     const photo = form.get("photo");
     const password = form.get("password");
@@ -17,6 +23,13 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
+        updateUserProfile({ displayName: name, photoURL: photo })
+          .then(() => {
+            navigate("/");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
         console.log(user);
       })
       .catch((error) => {
@@ -46,6 +59,9 @@ const Register = () => {
               className="input input-bordered"
               required
             />
+            {error.name && (
+              <label className="label text-red-600 ">{error.name}</label>
+            )}
           </div>
           {/* photo link  */}
           <div className="form-control">

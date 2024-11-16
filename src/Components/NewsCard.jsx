@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const NewsCard = (props = {}) => {
   const { news } = props || {};
   const { title } = news;
-  console.log(news);
+  // console.log(news);
   return (
     <div className="mx-auto bg-white rounded-xl shadow-md overflow-hidden">
       <div className="p-6">
