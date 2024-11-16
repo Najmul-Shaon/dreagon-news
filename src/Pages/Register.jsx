@@ -4,7 +4,8 @@ import { useContext } from "react";
 
 const Register = () => {
   const { createNewUser, setUser } = useContext(AuthContext);
-  console.log(setUser);
+
+  // console.log(setUser);
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = new FormData(e.target);
@@ -12,11 +13,10 @@ const Register = () => {
     const email = form.get("email");
     const photo = form.get("photo");
     const password = form.get("password");
-    // console.log(name, email, photo, password);
     createNewUser(email, password)
       .then((result) => {
         const user = result.user;
-        // setUser(user);
+        setUser(user);
         console.log(user);
       })
       .catch((error) => {
